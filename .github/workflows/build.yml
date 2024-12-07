@@ -27,12 +27,12 @@ jobs:
 
       - name: Build app
         run: npm run build
-        env:
-          URL_PREFIX: pdf-metadata
+        # env:
+        #   URL_PREFIX: pdf-metadata
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: dist
-          cname: turai.work
+          cname: pdf-metadata.turai.work
