@@ -1,5 +1,3 @@
-# ts実行
+# PDFメタデータビューアー
 
-```bash
-node --import tsx --env-file .env --watch ./src/scripts/hello.ts
-```
+https://pdf-metadata.turai.work/
