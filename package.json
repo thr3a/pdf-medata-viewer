@@ -11,6 +11,7 @@
     "serve": "python -m http.server -d dist"
   },
   "dependencies": {
+    "@mantine/code-highlight": "^7.13.4",
     "@mantine/core": "7.13.4",
     "@mantine/hooks": "7.13.4",
     "@mantine/vanilla-extract": "7.13.4",

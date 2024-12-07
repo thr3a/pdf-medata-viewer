@@ -27,7 +27,7 @@ export default function App() {
           </Title>
         </Anchor>
         <Title order={6} mb={'md'} c={'dimmed'}>
-          PDFのメタデータを確認できます。
+          PDFファイルに含まれているメタデータを確認できます。
         </Title>
         <Notice />
 
