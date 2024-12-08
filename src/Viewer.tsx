@@ -43,6 +43,8 @@ const PDFMetadataViewer: React.FC = () => {
 
   const handleChange = (file: File | null) => {
     setSelectedFile(file);
+    setMetadata(null);
+    setRawMetadata(null);
     if (file) {
       console.log('ファイル名:', file.name);
       extractPDFMetadata(file);
@@ -59,7 +61,9 @@ const PDFMetadataViewer: React.FC = () => {
       // メタデータの取得
       const metadataResult = await pdfDocument.getMetadata();
 
-      setRawMetadata(metadataResult.metadata.getRaw());
+      if (metadataResult.metadata) {
+        setRawMetadata(metadataResult.metadata.getRaw());
+      }
       if (metadataResult.info) {
         setMetadata(metadataResult.info as PDFInfo);
       }
@@ -81,7 +85,7 @@ const PDFMetadataViewer: React.FC = () => {
         />
       </form>
 
-      {selectedFile && metadata && rawMetadata && (
+      {metadata && (
         <>
           <Space h='md' />
           <Title order={3}>抽出結果</Title>
@@ -125,13 +129,20 @@ const PDFMetadataViewer: React.FC = () => {
               </Table.Tr>
             </Table.Tbody>
           </Table>
-          <Space h='md' />
-          <Title order={3}>Raw Data(XMP)</Title>
-          <CodeHighlight code={rawMetadata} language='tsx' />
         </>
       )}
+
+      {selectedFile && (
+        <>
+          <Space h='md' />
+          <Title order={3}>Raw Data(XMP)</Title>
+        </>
+      )}
+      {selectedFile && <CodeHighlight code={rawMetadata || ''} language='tsx' />}
+      {/* {selectedFile && rawMetadata === null && 'rawDataは取得できませんでした。'} */}
     </div>
   );
 };
 
 export default PDFMetadataViewer;
+//  <xmp:CreateDate>2024-05-10T16:14:38+08:00</xmp:CreateDate>
